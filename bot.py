@@ -18,6 +18,18 @@ def get_duck_image_url():
     data = res.json()
     return data['url']
 
+def get_dog_image_url():
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.command('dog')
+async def duck(ctx):
+    '''dog komutunu çağırdığımızda, program ordek_resmi_urlsi_al fonksiyonunu çağırır'''
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
+
 @bot.command('duck')
 async def duck(ctx):
     '''duck komutunu çağırdığımızda, program ordek_resmi_urlsi_al fonksiyonunu çağırır'''
@@ -31,5 +43,6 @@ async def mem(ctx):
         picture = discord.File(f)
  
     await ctx.send(file=picture)
+
 
 bot.run("token")
